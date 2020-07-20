@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'backend.events',
 
     # 3rd parties
+    'rest_framework',
 
 ]
 
