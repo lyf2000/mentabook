@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # 3rd parties
     'rest_framework',
+    'django_filters',
 
 ]
 
@@ -128,3 +129,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
