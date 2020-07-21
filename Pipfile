@@ -7,10 +7,11 @@ verify_ssl = true
 
 [packages]
 djangorestframework = "3.11.0"
-django = "==2.2.13"
+django = "2.2.13"
 django-filter = "2.3.0"
 djangorestframework-simplejwt = "4.4.0"
 celery = "4.4.2"
+python-dotenv = "0.14.0"
 
 [requires]
 python_version = "3.8"
