@@ -15,8 +15,7 @@ class EventViewSet(viewsets.ModelViewSet):
         return Event.objects.filter(author=self.request.user)
 
     def perform_create(self, serializer):
-        event = serializer.save(author=self.request.user)
-        event.add_reminder()
+        serializer.save(author=self.request.user)
 
     def perform_update(self, serializer):
         old_date = serializer.instance.date

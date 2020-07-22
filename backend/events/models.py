@@ -13,6 +13,17 @@ class Event(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+# TODO go all to create
+
+    def delete(self, *args, **kwargs):
+        reminder = self.revoke_reminder()
+        reminder.delete()
+        super(Event, self).delete(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super(Event, self).save(*args, **kwargs)
+        self.add_reminder()
+
     def add_reminder(self):
         from .tasks import remind_event
         task = remind_event.apply_async((self.id,), eta=self.date - timedelta(hours=1))
@@ -26,8 +37,10 @@ class Event(models.Model):
         self.add_reminder()
 
     def revoke_reminder(self):
+        # TODO простите ошибка на сервере
         reminder = EventReminderTask.objects.get(event=self)
         revoke(reminder.task_id, terminate=True)
+        return reminder
 
     def check_date_changed(self, old_date):
         if self.date == old_date:
