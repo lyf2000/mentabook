@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import timedelta
 
 
 class Event(models.Model):
@@ -10,3 +11,10 @@ class Event(models.Model):
  
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def add_reminder(self):
+        from .tasks import remind_event
+        remind_event.apply_async((self.id,), eta=self.date - timedelta(hours=1))
+
+    def revoke_reminder(self):
+        pass
