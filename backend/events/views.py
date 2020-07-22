@@ -17,3 +17,9 @@ class EventViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         event = serializer.save(author=self.request.user)
         event.add_reminder()
+
+    def perform_update(self, serializer):
+        old_date = serializer.instance.date
+        event = serializer.save()
+        if event.check_date_changed(old_date):
+            event.date_changed()

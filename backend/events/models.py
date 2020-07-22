@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import timedelta
+from celery.task.control import revoke
 
 
 class Event(models.Model):
@@ -15,10 +16,23 @@ class Event(models.Model):
     def add_reminder(self):
         from .tasks import remind_event
         task = remind_event.apply_async((self.id,), eta=self.date - timedelta(hours=1))
-        EventReminderTask.objects.create(task_id = task.id, event=self)
-        
+        self.add_event_reminder_task(task.id)
+
+    def add_event_reminder_task(self, task_id):
+        EventReminderTask.objects.update_or_create(event=self, defaults={'task_id': task_id})
+
+    def date_changed(self):
+        self.revoke_reminder()
+        self.add_reminder()
+
     def revoke_reminder(self):
-        pass
+        reminder = EventReminderTask.objects.get(event=self)
+        revoke(reminder.task_id, terminate=True)
+
+    def check_date_changed(self, old_date):
+        if self.date == old_date:
+            return False
+        return True
 
 
 class EventReminderTask(models.Model):
