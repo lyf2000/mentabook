@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+ipython = "7.16.1"
 
 [packages]
 djangorestframework = "3.11.0"
@@ -11,6 +12,8 @@ django = "2.2.13"
 django-filter = "2.3.0"
 djangorestframework-simplejwt = "4.4.0"
 python-dotenv = "0.14.0"
+redis = "3.5.3"
+celery = "4.4.2"
 django-cors-headers = "3.4.0"
 
 [requires]
