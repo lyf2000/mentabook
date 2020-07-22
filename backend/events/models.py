@@ -3,27 +3,7 @@ from datetime import timedelta
 from celery.task.control import revoke
 
 
-class Event(models.Model):
-    author = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='events')
-
-    title = models.CharField(max_length=128)
-    text = models.CharField(max_length=512)
-    date = models.DateTimeField()
- 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-
-# TODO go all to create
-
-    def delete(self, *args, **kwargs):
-        reminder = self.revoke_reminder()
-        reminder.delete()
-        super(Event, self).delete(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
-        super(Event, self).save(*args, **kwargs)
-        self.add_reminder()
-
+class EventReminderHelper:
     def add_reminder(self):
         from .tasks import remind_event
         task = remind_event.apply_async((self.id,), eta=self.date - timedelta(hours=1))
@@ -46,6 +26,30 @@ class Event(models.Model):
         if self.date == old_date:
             return False
         return True
+
+
+class Event(models.Model, EventReminderHelper):
+    author = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='events')
+
+    title = models.CharField(max_length=128)
+    text = models.CharField(max_length=512)
+    date = models.DateTimeField()
+ 
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+# TODO go all to create
+
+    def delete(self, *args, **kwargs):
+        reminder = self.revoke_reminder()
+        reminder.delete()
+        super(Event, self).delete(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super(Event, self).save(*args, **kwargs)
+        self.add_reminder()
+
+
 
 
 class EventReminderTask(models.Model):
