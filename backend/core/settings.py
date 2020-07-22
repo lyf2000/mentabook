@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # 3rd parties
     'rest_framework',
     'django_filters',
+    'corsheaders',
 
 ]
 
@@ -57,6 +58,7 @@ AUTH_USER_MODEL = 'users.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # this should be above WhiteNoiseMiddleware too
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -154,3 +156,17 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
 }
+
+
+# CORS
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1:8000",
+    
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    # 'GET',
+    'POST',
+    'PUT'
+]
