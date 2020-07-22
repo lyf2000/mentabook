@@ -14,8 +14,9 @@ class Event(models.Model):
 
     def add_reminder(self):
         from .tasks import remind_event
-        remind_event.apply_async((self.id,), eta=self.date - timedelta(hours=1))
-
+        task = remind_event.apply_async((self.id,), eta=self.date - timedelta(hours=1))
+        EventReminderTask.objects.create(task_id = task.id, event=self)
+        
     def revoke_reminder(self):
         pass
 
