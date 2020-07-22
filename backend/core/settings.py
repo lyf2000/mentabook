@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # 3rd parties
     'rest_framework',
     'django_filters',
+    'corsheaders',
 
 ]
 
@@ -57,6 +58,7 @@ AUTH_USER_MODEL = 'users.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # this should be above WhiteNoiseMiddleware too
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -167,3 +169,17 @@ EMAIL_HOST_USER = os.getenv('ADMIN_GOOGLE_EMAIL')
 EMAIL_HOST_PASSWORD = os.getenv('ADMIN_GOOGLE_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+# CORS
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1:8000",
+    
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT'
+]
