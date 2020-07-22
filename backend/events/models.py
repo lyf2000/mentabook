@@ -18,3 +18,8 @@ class Event(models.Model):
 
     def revoke_reminder(self):
         pass
+
+
+class EventReminderTask(models.Model):
+    task_id = models.CharField(max_length=128, unique=True)
+    event = models.OneToOneField('Event', on_delete=models.CASCADE)
