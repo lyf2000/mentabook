@@ -20,10 +20,12 @@
 
     <v-main>
 
-    <v-container fluid>
-
+  
+      <v-container   fill-height>
       <router-view></router-view>
-    </v-container>
+      </v-container>
+  
+
   </v-main>
   </v-app>
 </template>

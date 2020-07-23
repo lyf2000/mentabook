@@ -11,7 +11,7 @@
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on }">
                     <v-btn
-                      :href="source"
+                      href="#"
                       icon
                       large
                       target="_blank"
