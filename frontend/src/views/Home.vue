@@ -2,6 +2,10 @@
   <div class="home">
      <v-btn color="accent" large @click.stop="showScheduleForm=true"></v-btn>   
    <LoginForm :visible="showScheduleForm" @close="showScheduleForm=false" />
+
+   <v-btn color="accent" large @click.stop="showSignUpForm=true"></v-btn>   
+   <SignUpForm :visible="showSignUpForm" @close="showSignUpForm=false" />
+
       <EventDetail :visible2="showEventDetailForm" @close="showEventDetailForm=false" />
   
       
@@ -44,6 +48,7 @@
 <script>
 // @ is an alias to /src
 import LoginForm from '@/components/LoginForm.vue'
+import SignUpForm from '@/components/SignUpForm.vue'
 import EventDetail from '@/components/events/EventDetail.vue'
 
 export default {
@@ -52,6 +57,7 @@ export default {
       return {
         showScheduleForm: false,
         showEventDetailForm: false,
+        showSignUpForm: false,
         drawer: true,
         editId: 0,
 
@@ -66,7 +72,7 @@ export default {
     }
   },
   components: {
-    LoginForm, EventDetail, 
+    LoginForm, EventDetail, SignUpForm, 
   }
 }
 </script>
