@@ -92,7 +92,7 @@
 <script>
 
 export default {
-  name: 'EventDetail',
+  name: 'EventEdit',
   props: ['visible2'],
   data() {
       return {

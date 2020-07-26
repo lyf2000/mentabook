@@ -29,7 +29,7 @@ SECRET_KEY = 'g&rc56tubu-07ty4j*#z!-b4bqv$+wd=%-zqp@0alq^tbj#+%0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -170,16 +170,22 @@ EMAIL_HOST_PASSWORD = os.getenv('ADMIN_GOOGLE_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-
 # CORS
-CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:8000",
-    
-]
+# CORS_ORIGIN_WHITELIST = [
+#     # "http://127.0.0.1:8000",
+#     "http://localhost:8080",
+# ]
+CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ALLOW_METHODS = [
-    'DELETE',
-    'GET',
-    'POST',
-    'PUT'
-]
+# CORS_ALLOW_METHODS = [
+#     'DELETE',
+#     'GET',
+#     'POST',
+#     'PUT'
+# ]
+
+# CORS_ALLOW_HEADERS = (
+        
+#         'Access-Control-Allow-Headers',
+#         'Access-Control-Allow-Credentials',
+#     )
