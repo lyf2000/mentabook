@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { UserSubmit, UserRespnonse, User, EventItem } from './models'
+import { UserSubmit, User, EventItem } from './models'
+import users from './modules/users'
+
 
 export const axs = axios.create({
     baseURL:  'http://localhost:8000',
@@ -12,6 +14,66 @@ export const axs = axios.create({
     //     'Access-Control-Allow-Credentials': true
 	}
 })
+
+
+// axs.interceptors.request.use(
+//     config => {
+//         const accessToken = users.user?.access
+//         if (accessToken) {
+//             console.log('TOKEN');
+//             config.headers['Authorization'] = 'Bearer ' + accessToken
+//         } else {
+//             console.log('NO TOKEN');
+            
+//             delete config.headers['Authorization']
+//         }
+        
+//         config.headers['Content-Type'] = 'application/json';
+
+//         return config
+//     }
+// )
+
+// axs.interceptors.response.use((response) => {
+//     return response
+// }, function (error) {
+//     const originalRequest = error.config;
+//     if (error.response.status === 401
+//         // && originalRequest.url ===
+//         // 'http://127.0.0.1:8000/api/token/'
+//     ) {
+//         console.log('401');
+        
+//         // localStorageService.clearToken();
+//         // router.push('/login');
+//         return Promise.reject(error);
+//     }
+
+//     // const refreshToken = localStorageService.getRefreshToken();
+//     // if (error.response.status === 401 && refreshToken && refreshToken !== 'undefined') {
+//     //     console.log('retry');
+//     //
+//     //     return AXIOS.post('/token/refresh/',
+//     //         {
+//     //             "refresh": refreshToken
+//     //         })
+//     //         .then(function (res) {
+//     //             if (res.status === 201 || res.status === 200) {
+//     //                 localStorageService.setToken(res.data);
+//     //                 AXIOS.defaults.headers.common['Authorization'] = 'Bearer ' + localStorageService.getAccessToken();
+//     //                 return AXIOS(originalRequest);
+//     //             }
+//     //         })
+//     //         .catch(function (err) {
+//     //             localStorageService.clearToken();
+//     //             router.push('/login')
+//     //         })
+//     // }
+//     // localStorageService.clearToken();
+//     // router.push('/login');
+//     return Promise.reject(error);
+// });
+
 
 export function setJWT(jwt: string) {
     axs.defaults.headers.common['Authorization'] = `Bearer ${jwt}`

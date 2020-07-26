@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-     <v-btn color="accent" large @click.stop="showScheduleForm=true"></v-btn>   
+     <v-btn color="accent" large @click.stop="exp"></v-btn>   
    <LoginForm :visible="showScheduleForm" @close="showScheduleForm=false" />
 
    <v-btn color="accent" large @click.stop="showSignUpForm=true"></v-btn>   
@@ -20,6 +20,8 @@ import LoginForm from '@/components/LoginForm.vue'
 import SignUpForm from '@/components/SignUpForm.vue'
 import EventEdit from '@/components/events/EventEdit.vue'
 import EventList from '@/components/events/EventList.vue'
+import users from '@/store/modules/users'
+
 
 export default {
   name: 'Home',
@@ -34,11 +36,10 @@ export default {
   },
   methods: {
     exp() {
-      console.log(42);
+      console.log('exp');
+      users.openDialogSignUp()
     },
-    async ev() {
-      await getEvents()
-    }
+
   },
   components: {
     LoginForm, EventEdit, SignUpForm, EventList
