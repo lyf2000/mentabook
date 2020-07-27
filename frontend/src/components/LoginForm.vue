@@ -45,7 +45,6 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="primary" @click="login()" >Login</v-btn>
-                <v-btn color="primary" @click="off" >Off</v-btn>
               </v-card-actions>
             </v-card>
     
@@ -55,7 +54,6 @@
 
 import { Vue, Component } from 'vue-property-decorator';
 import users from '@/store/modules/users'
-import dialogs from '@/store/modules/dialogs'
 
 
 @Component({
@@ -64,7 +62,6 @@ import dialogs from '@/store/modules/dialogs'
 export default class LoginForm extends Vue {
   username = ''
   password = ''
-  s = true
 
   login() {
     users.login({
@@ -72,15 +69,6 @@ export default class LoginForm extends Vue {
       password: this.password
     })
   }
-  
-  get show() {
-    return this.s
-  }
-
-  off() {
-    dialogs.changeActiveDialog(null)
-  }
-
 }
 
 </script>

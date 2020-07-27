@@ -97,7 +97,7 @@
 import { Vue, Component } from 'vue-property-decorator';
 import dialogs from '@/store/modules/dialogs'
 import { updateEvent } from '@/store/api'
-import { EventItemEdit, EventItem } from '../models'
+import { EventItemEdit, EventItem } from '@/store/models'
 
 @Component({
   name: 'EventEdit',
@@ -109,7 +109,7 @@ export default class EventEdit extends Vue {
   private modal2 = false
   private date = null
 
-  get event() {
+  get event(): EventItemEdit | null {
     return dialogs.event
   }
 

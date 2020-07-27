@@ -31,3 +31,9 @@ export interface EventItemEdit {
     time: string,
     fullDate: string
 }
+
+export interface UserSignUp {
+    username: string,
+    email: string,
+    password: string
+}

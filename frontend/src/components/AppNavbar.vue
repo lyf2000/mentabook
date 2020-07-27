@@ -15,9 +15,14 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
-           <v-btn
-           @click="openDialog('LoginForm')"
+      <v-btn
+           @click="openDialog('SignUpForm')"
             >
+        <span class="mr-2">SIGNUP</span>
+      </v-btn>
+      <v-btn
+        @click="openDialog('LoginForm')"
+      >
         <span class="mr-2">LOGIN</span>
       </v-btn>
     </v-app-bar>

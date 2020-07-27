@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UserSubmit, User, EventItem } from './models'
+import { UserSubmit, User, EventItem, UserSignUp } from './models'
 import users from './modules/users'
 import router from '@/router'
 import events from './modules/events'
@@ -137,6 +137,21 @@ export async function deleteEvent(id: number) {
             'Authorization': `Bearer ${users.user?.access}`
         }
     }).then(response => {
+        console.log(response.data, response.status);
+        return response.data as EventItem
+    }).catch(err => {
+        console.log('err', err);
+        return err
+    })
+}
+
+
+export async function signUp(userSignUp: UserSignUp) {
+
+    console.log(userSignUp);
+    
+
+    return axs.post(`/signup/`, userSignUp).then(response => {
         console.log(response.data, response.status);
         return response.data as EventItem
     }).catch(err => {

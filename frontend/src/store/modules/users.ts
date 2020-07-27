@@ -13,7 +13,6 @@ import { loginUser } from '../api';
 class UsersModule extends VuexModule {
     _user: User | null = null
 
-
     //  ---- USER ----
 
     @Mutation
@@ -30,7 +29,6 @@ class UsersModule extends VuexModule {
     get user() {
         return this._user
     }
-
 }
 
 export default getModule(UsersModule)
