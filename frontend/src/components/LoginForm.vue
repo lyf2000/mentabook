@@ -1,5 +1,4 @@
 <template>
-<v-dialog v-model="show" persistent max-width="350px">
       <v-card class="elevation-12">
               <v-toolbar
                 color="primary"
@@ -48,41 +47,28 @@
                 <v-btn color="primary" @click="login()" >Login</v-btn>
               </v-card-actions>
             </v-card>
-    </v-dialog>
-
-
+    
 </template>
 
 <script lang="ts">
 
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 import users from '@/store/modules/users'
 
 
-@Component
+@Component({
+  name: 'LoginForm',
+})
 export default class LoginForm extends Vue {
-  username?: string = ''
-  password?: string = ''
-
-  @Prop(Boolean) visible: boolean | null = null
+  username = ''
+  password = ''
 
   login() {
     users.login({
-      username!: this.username,
-      password!: this.password
+      username: this.username,
+      password: this.password
     })
   }
-
-  
-  get show() {
-    return this.visible
-  }
-  set show(value) {
-    if (!value) {
-      this.$emit('close')
-    }
-  }
-
 }
 
 </script>

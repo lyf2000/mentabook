@@ -138,6 +138,7 @@ TIME_ZONE = 'Europe/Moscow'
 STATIC_URL = '/static/'
 
 
+# REST
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -145,7 +146,7 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
-    'DATETIME_INPUT_FORMATS': ["%Y-%m-%d %H:%M", ],
+    'DATETIME_INPUT_FORMATS': ["%Y-%m-%d %H:%M", '%Y %b %d, %H:%M'],
 }
 
 

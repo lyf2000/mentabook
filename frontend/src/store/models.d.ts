@@ -22,3 +22,18 @@ export interface EventItem {
     created: string,
     updated: string
 }
+
+export interface EventItemEdit {
+    id: number,
+    title: string,
+    text: string,
+    date: string,
+    time: string,
+    fullDate: string
+}
+
+export interface UserSignUp {
+    username: string,
+    email: string,
+    password: string
+}

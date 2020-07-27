@@ -1,7 +1,7 @@
-import { Module, VuexModule, getModule, MutationAction, Mutation, Action } from 'vuex-module-decorators'
+import { Module, VuexModule, getModule, Mutation, Action } from 'vuex-module-decorators'
 import store from "@/store";
 import { User, UserSubmit } from '../models';
-import { loginUser, axs } from '../api';
+import { loginUser } from '../api';
 
 
 @Module({
@@ -11,29 +11,23 @@ import { loginUser, axs } from '../api';
     dynamic: true
 })
 class UsersModule extends VuexModule {
-    user: User | null = null
+    _user: User | null = null
 
-    // @MutationAction({mutate: ['user']})
-    // async login(userDubmit: UserSubmit) {
-    //     console.log(userDubmit);
-        
-    //     const user = await loginUser(userDubmit)
-    //     console.log(user);
-        
-    //     return { user }     
-    // }
+    //  ---- USER ----
 
     @Mutation
     setUser(user: User) { 
-        console.log('user', user);
-        
-        this.user = user
+        this._user = user
      }
 
     @Action({commit: 'setUser'})
     async login(userSubmit: UserSubmit) {
         const user = await loginUser(userSubmit)
         return user
+    }
+
+    get user() {
+        return this._user
     }
 }
 

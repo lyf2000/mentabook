@@ -7,7 +7,7 @@ class EventSerializer(serializers.ModelSerializer):
     author = serializers.PrimaryKeyRelatedField(
         read_only=True,
         default=serializers.CurrentUserDefault())
-    date = serializers.DateTimeField(format='%b %d, %H:%M')
+    date = serializers.DateTimeField(format='%Y %b %d, %H:%M')
     updated = serializers.DateTimeField(format='%b %d, %H:%M', read_only=True)
     created = serializers.DateTimeField(format='%b %d', read_only=True)
 

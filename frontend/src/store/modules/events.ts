@@ -10,25 +10,22 @@ import { loadEvents } from '../api'
     dynamic: true
 })
 class EventsModule extends VuexModule {
-    eventList: EventItem[] = []
+    _eventList: EventItem[] = []
 
 
     @Mutation
     setEventList(eventList: EventItem[]) {
-        console.log('eLI', eventList);
-
-        this.eventList = eventList
+        this._eventList = eventList
     }
 
     @Action({commit: 'setEventList'})
     async loadEventList() {
-        const EventList = await loadEvents()
-        
-        return EventList
+        const eventList = await loadEvents()
+        return eventList
     }
 
-    get getEventList() {
-        return this.eventList
+    get eventList() {
+        return this._eventList
     }
 
 }

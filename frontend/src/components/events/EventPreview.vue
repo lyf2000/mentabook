@@ -1,7 +1,6 @@
 <template>
     <v-card>
         <v-card-text
-            @click.stop="showEventEdit"
         >
             <div>{{ eventItem.date }}</div>
             <p class="display-1 text--primary">
@@ -12,12 +11,15 @@
         </v-card-text>
         <v-card-actions>
             <v-btn icon
-                @click="showEventEditForm=true"
+                @click="showEdit"
             >
                 <v-icon class="mr-1">mdi-fountain-pen</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
-        <v-btn icon>
+        <v-btn 
+        icon
+        @click="deleteEvent"
+        >
             <v-icon class="mr-1">mdi-delete</v-icon>
         </v-btn>
         </v-card-actions>
@@ -26,21 +28,22 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import events from '@/store/modules/events'
+import dialogs from '@/store/modules/dialogs'
 import { EventItem } from "@/store/models";
+import { deleteEvent } from '@/store/api'
+
 
 @Component({
   name: 'EventPreview',
-  components: {
-
-  },
 })
 export default class App extends Vue {
     @Prop() eventItem!: EventItem
-   data() {
-    return {
-    //   eventPreview: [=
+    showEdit() {
+      dialogs.changeEvent(this.eventItem)
+      dialogs.changeActiveDialog('EventEdit')
     }
-  }
+    async deleteEvent() {
+      const res = await deleteEvent(this.eventItem.id)
+    }
 }
 </script>
