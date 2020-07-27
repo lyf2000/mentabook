@@ -1,51 +1,42 @@
 <template>
   <div class="home">
-     <v-btn color="accent" large @click.stop="exp"></v-btn>   
-   <LoginForm :visible="showScheduleForm" @close="showScheduleForm=false" />
+    <v-btn depressed @click="gett" small>Normal</v-btn>
 
-   <v-btn color="accent" large @click.stop="showSignUpForm=true"></v-btn>   
-   <SignUpForm :visible="showSignUpForm" @close="showSignUpForm=false" />
-<v-btn color="accent" large @click="ev"></v-btn>   
-      <EventEdit :visible2="showEventEditForm" @close="showEventEditForm=false" />
-  
-      <EventList />
+    <v-btn depressed @click="exp1" small>Normal</v-btn>
+      
+      <Dialog></Dialog>
+
+      <EventList></EventList>
 
 
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import LoginForm from '@/components/LoginForm.vue'
-import SignUpForm from '@/components/SignUpForm.vue'
-import EventEdit from '@/components/events/EventEdit.vue'
+
+
+<script lang="ts">
+
+import { Vue, Component } from 'vue-property-decorator'
 import EventList from '@/components/events/EventList.vue'
-import users from '@/store/modules/users'
+import Dialog from '@/components/Dialog.vue'
+import events from '@/store/modules/events'
+import dialogs from '@/store/modules/dialogs'
 
 
-export default {
+@Component({
   name: 'Home',
-  data() {
-      return {
-        showScheduleForm: false,
-        showEventEditForm: false,
-        showSignUpForm: false,
-        drawer: true,
-        editId: 0,
-      }
-  },
-  methods: {
-    exp() {
-      console.log('exp');
-      users.openDialogSignUp()
-    },
-
-  },
   components: {
-    LoginForm, EventEdit, SignUpForm, EventList
+    Dialog, EventList
   },
-  async created() {
-    // events.getEventList()
-  }
+})
+export default class Home extends Vue {
+    async gett() {
+      await events.loadEventList()
+    }
+    exp1() {
+      dialogs.changeActiveDialog('loginForm')
+    }
 }
+
 </script>
+
