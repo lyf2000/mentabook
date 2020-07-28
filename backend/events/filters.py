@@ -8,23 +8,36 @@ def day(qs):
     to = timedelta(days=1) + localtime()
     return qs.filter(date__range=[now, to]) 
 
+def week(qs):
+    now = localtime()
+    to = timedelta(days=7) + localtime()
+    return qs.filter(date__range=[now, to]) 
+
+def month(qs):
+    now = localtime()
+    to = timedelta(days=30) + localtime()
+    return qs.filter(date__range=[now, to]) 
+
+
 def all(qs):
     return qs
 
 
 class EventFilter(filters.FilterSet):
-    text = filters.CharFilter(lookup_expr='icontains')
+    title = filters.CharFilter(lookup_expr='icontains')
 
     DATE_CHOICES = {
         'all': all,
         'day': day,
+        'week': week,
+        'month': month
     }
 
     date =  filters.CharFilter(method='filter_date')
 
     class Meta:
         model = Event
-        fields = ['text', 'date', ]
+        fields = ['title', 'date', ]
 
     # TODO accomplish
     def filter_date(self, queryset, name, value):

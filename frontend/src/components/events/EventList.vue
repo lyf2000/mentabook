@@ -1,10 +1,13 @@
 <template>
-        <v-row>
+        <v-row v-if="eventList.length">
       <v-col v-for="n in eventList" :key="n.id" cols="6">
         <EventPreview
           :eventItem="n"
         ></EventPreview>
       </v-col>
+    </v-row>
+    <v-row v-else>
+      Empty List
     </v-row>
 </template>
 

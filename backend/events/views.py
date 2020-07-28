@@ -3,12 +3,14 @@ from .models import Event
 from .serializers import EventSerializer
 from .filters import EventFilter
 from django_filters import rest_framework as filters
+from .paginators import MyPaginator
 
 
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     filterset_class = EventFilter
+    pagination_class = MyPaginator
     permission_classes = [permissions.IsAuthenticated, ]
 
     def get_queryset(self, *args, **kwargs):

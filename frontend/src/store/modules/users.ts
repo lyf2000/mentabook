@@ -21,7 +21,6 @@ class UsersModule extends VuexModule {
 
     @Action({commit: 'setUser'})
     login(user: User) {
-        console.log('ser', user);
         return user
     }
 

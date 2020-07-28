@@ -31,6 +31,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import dialogs from '@/store/modules/dialogs'
 import { EventItem } from "@/store/models";
 import { deleteEvent } from '@/store/api'
+import events from '../../store/modules/events';
 
 
 @Component({
@@ -42,8 +43,11 @@ export default class App extends Vue {
       dialogs.changeEvent(this.eventItem)
       dialogs.changeActiveDialog('EventEdit')
     }
-    async deleteEvent() {
-      const res = await deleteEvent(this.eventItem.id)
+    deleteEvent() {
+      deleteEvent(this.eventItem.id).then(response => {
+          events.loadEventList()
+          dialogs.changeActiveDialog(null)
+      })
     }
 }
 </script>

@@ -147,6 +147,8 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
     'DATETIME_INPUT_FORMATS': ["%Y-%m-%d %H:%M", '%Y %b %d, %H:%M'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
 }
 
 

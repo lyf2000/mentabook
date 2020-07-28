@@ -88,37 +88,29 @@ export function loginUser(user: UserSubmit) {
         })
 }
 
-export async function loadEvents() {
+export async function loadEvents(params: string) {
 
-    console.log(users.user?.access);
-    
-
-    return axs.get('/events/', {
+    return axs.get('/events/?' + params, {
         headers: {
             'Authorization': `Bearer ${users.user?.access}`
         }
     }).then(response => {
-        return response.data || [] as (EventItem)[]
+        return response.data
     }).catch(err => {
         return []
     })
 }
 
 export async function updateEvent(id: number, ev: object) {
-
-    console.log(id, ev);
     
-
     return axs.put(`/events/${id}/`, ev, {
         headers: {
             'Authorization': `Bearer ${users.user?.access}`
         }
     }).then(response => {
-        console.log(response.data, response.status);
         return response.data as EventItem
     }).catch(err => {
-        console.log('err', err);
-        return err
+        return Promise.reject(err.response.data)
     })
 }
 
@@ -130,25 +122,16 @@ export async function deleteEvent(id: number) {
             'Authorization': `Bearer ${users.user?.access}`
         }
     }).then(response => {
-        console.log(response.data, response.status);
-        return response.data as EventItem
-    }).catch(err => {
-        console.log('err', err);
-        return err
+        return response
     })
 }
 
 
 export async function signUp(userSignUp: UserSignUp) {
 
-    console.log(userSignUp);
-    
-
     return axs.post(`/signup/`, userSignUp).then(response => {
-        console.log(response.data, response.status);
-        return response.data as EventItem
+        return response.data
     }).catch(err => {
-        console.log('err', err);
-        return err
+        return Promise.reject(err.response.data)
     })
 }
