@@ -78,37 +78,30 @@ export const axs = axios.create({
 // });
 
 
-export function setJWT(jwt: string) {
-    axs.defaults.headers.common['Authorization'] = `Bearer ${jwt}`
-}
-
-export function clearJWT() {
-    delete axs.defaults.headers.common['Authorization']
-}
-
-export async function loginUser(user: UserSubmit): Promise<User|undefined> {
-    try {
-        const response = await axs.post('/token/', user)
-        return (response.data as User)
-    } catch (e) {
-        console.log('ERROR');
-        
-        console.log(e);
-    }
+export function loginUser(user: UserSubmit) {
+    return axs.post('/token/', user)
+        .then(response => {
+            return response.data
+        })
+        .catch(err => {
+            return Promise.reject(err)
+        })
 }
 
 export async function loadEvents() {
+
+    console.log(users.user?.access);
     
 
-        return axs.get('/events/', {
-            headers: {
-                'Authorization': `Bearer ${users.user?.access}`
-            }
-        }).then(response => {
-            return response.data || [] as (EventItem)[]
-        }).catch(err => {
-            return []
-        })
+    return axs.get('/events/', {
+        headers: {
+            'Authorization': `Bearer ${users.user?.access}`
+        }
+    }).then(response => {
+        return response.data || [] as (EventItem)[]
+    }).catch(err => {
+        return []
+    })
 }
 
 export async function updateEvent(id: number, ev: object) {

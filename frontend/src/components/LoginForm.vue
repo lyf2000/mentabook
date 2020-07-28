@@ -53,7 +53,11 @@
 <script lang="ts">
 
 import { Vue, Component } from 'vue-property-decorator';
+import { loginUser } from '@/store/api'
+import { User } from '../store/models';
 import users from '@/store/modules/users'
+import events from '@/store/modules/events'
+import dialogs from '@/store/modules/dialogs'
 
 
 @Component({
@@ -64,10 +68,20 @@ export default class LoginForm extends Vue {
   password = ''
 
   login() {
-    users.login({
+    loginUser({
       username: this.username,
       password: this.password
-    })
+    }).then((data) => {
+      const user = data as User
+      this.$store.dispatch('users/login', user).then(() => {
+          events.loadEventList()
+          dialogs.changeActiveDialog(null)
+      })
+      
+    }).catch((err) => {
+      alert('Credits are worng!')
+    });
+    
   }
 }
 

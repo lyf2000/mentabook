@@ -24,6 +24,11 @@ class EventsModule extends VuexModule {
         return eventList
     }
 
+    @Action({commit: 'setEventList'})
+    async clearEventList() {
+        return [] as EventItem[]
+    }
+
     get eventList() {
         return this._eventList
     }

@@ -1,12 +1,14 @@
 <template>
   <div class="home">
-    <v-btn depressed @click="gett" small>Normal</v-btn>
-
-    <v-btn depressed @click="exp1" small>Normal</v-btn>
-      
       <Dialog></Dialog>
 
-      <EventList></EventList>
+      <EventList v-if="currentUser"></EventList> 
+      <div>
+        SRY NTHN
+
+      </div>
+
+      
 
 
   </div>
@@ -20,6 +22,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import EventList from '@/components/events/EventList.vue'
 import Dialog from '@/components/Dialog.vue'
 import events from '@/store/modules/events'
+import users from '@/store/modules/users'
 import dialogs from '@/store/modules/dialogs'
 
 
@@ -30,11 +33,10 @@ import dialogs from '@/store/modules/dialogs'
   },
 })
 export default class Home extends Vue {
-    async gett() {
-      await events.loadEventList()
-    }
-    exp1() {
-      dialogs.changeActiveDialog('loginForm')
+  
+
+    get currentUser() {
+      return users.user
     }
 }
 

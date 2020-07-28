@@ -16,6 +16,11 @@
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
       <v-btn
+        @click="logout"
+      >
+        <span class="mr-2">LOGOUT</span>
+      </v-btn>
+      <v-btn
            @click="openDialog('SignUpForm')"
             >
         <span class="mr-2">SIGNUP</span>
@@ -32,6 +37,8 @@
 
 import { Vue, Component } from 'vue-property-decorator'
 import dialogs from '@/store/modules/dialogs'
+import users from '../store/modules/users'
+import events from '../store/modules/events'
 
 
 @Component({
@@ -40,6 +47,10 @@ import dialogs from '@/store/modules/dialogs'
 export default class AppNavbar extends Vue {
   openDialog(dialog: string) {
     dialogs.changeActiveDialog(dialog)
+  }
+  logout() {
+    users.logout()
+    events.clearEventList()
   }
 }
 
