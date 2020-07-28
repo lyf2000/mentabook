@@ -14,6 +14,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import dialogs from '@/store/modules/dialogs' 
 import LoginForm from '@/components/LoginForm.vue'
 import EventEdit from '@/components/events/EventEdit.vue'
+import EventCreate from '@/components/events/EventCreate.vue'
 import SignUpForm from '@/components/SignUpForm.vue'
 
 
@@ -21,7 +22,7 @@ import SignUpForm from '@/components/SignUpForm.vue'
 @Component({
   name: 'Dialog',
   components: {
-    SignUpForm, EventEdit, LoginForm
+    SignUpForm, EventEdit, LoginForm, EventCreate
   },
 })
 export default class Dialog extends Vue {

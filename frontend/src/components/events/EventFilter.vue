@@ -51,6 +51,15 @@
                 </v-btn>
                 
         </v-col>
+        <v-col  sm="2">
+
+                <v-btn 
+                       medium
+                       @click="openCreate"
+                >Create
+                </v-btn>
+                
+        </v-col>
 
     </v-row>
 </template>
@@ -60,6 +69,7 @@
 
 import { Vue, Component } from 'vue-property-decorator'
 import events from '@/store/modules/events'
+import dialogs from '../../store/modules/dialogs';
 
 
 @Component({
@@ -101,6 +111,10 @@ export default class EventFilter extends Vue {
     filter(pageNum) {
         const params = this.getSearchParamsUrl(pageNum)
         events.loadEventList(params)
+    }
+
+    openCreate() {
+        dialogs.changeActiveDialog('EventCreate')
     }
 
 }

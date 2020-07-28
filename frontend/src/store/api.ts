@@ -115,6 +115,23 @@ export async function updateEvent(id: number, ev: object) {
 }
 
 
+
+export async function createEvent(ev: object) {
+    
+    return axs.post(`/events/`, ev, {
+        headers: {
+            'Authorization': `Bearer ${users.user?.access}`
+        }
+    }).then(response => {
+        return response.data
+         
+    }).catch(err => {
+        console.log('err', err);
+        return Promise.reject(err.response.data)
+    })
+}
+
+
 export async function deleteEvent(id: number) {
 
     return axs.delete(`/events/${id}/`, {
