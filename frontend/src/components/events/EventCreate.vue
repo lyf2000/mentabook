@@ -157,14 +157,11 @@ export default class EventCreate extends Vue {
   }
 
   createEvent() {
-      console.log('wesrghdtg');
-      
     const { text, title } = this.event
     
     if (this.event.date.trim() !== '' || this.event.time.trim() !== '') {
       if (this.event.date.trim() !== '' && this.event.time.trim() !== '') {
             const newDate = `${this.event.date} ${this.event.time}`
-            console.log('wesrghdtg');
             createEvent({
                     text, title,
                     date: newDate
