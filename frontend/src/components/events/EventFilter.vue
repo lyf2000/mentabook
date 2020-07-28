@@ -80,8 +80,6 @@ import dialogs from '../../store/modules/dialogs';
 })
 export default class EventFilter extends Vue {
     get next() {
-        console.log('next', events.next );
-        
         return events.next
     }
 
@@ -100,8 +98,6 @@ export default class EventFilter extends Vue {
         }
 
         if (pageNum) {
-            console.log('pageNum', pageNum);
-            
             params['page'] = pageNum
         }
         

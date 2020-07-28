@@ -23,9 +23,11 @@ class EventsModule extends VuexModule {
     }
 
     @Action({commit: 'setNext'})
-    async changeNext(next: string) {
+    async changeNext(next: string | null) {
         const url = new URL(next);
-        next = url.searchParams.get("page") || '';
+        console.log('next', next);
+        
+        next = url.searchParams.get("page") || null;
         return next
     }
 
@@ -61,7 +63,6 @@ class EventsModule extends VuexModule {
     async loadEventList(params='') {
         const data = await loadEvents(params)
         const { next, previous } = data
-        console.log('QQQ',next, previous)
         store.dispatch('events/changeNext', next)
         store.dispatch('events/changePrevious', previous)
         return data.results  || [] as (EventItem)[]
