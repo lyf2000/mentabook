@@ -10,7 +10,6 @@ class UserCreateAPIView(CreateAPIView):
     serializer_class = UserCreateSerializer
 
 
-# TODO transport by logic
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super(MyTokenObtainPairSerializer, self).validate(attrs)

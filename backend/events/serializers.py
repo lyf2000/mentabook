@@ -13,7 +13,6 @@ class EventSerializer(serializers.ModelSerializer):
 
     def __init__(self, *args, **kwargs):
 
-        # TODO determine either list or eiter detail
         super(serializers.ModelSerializer, self).__init__(*args, **kwargs)
         self.partial=True
         # a = self.context['request']

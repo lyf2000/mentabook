@@ -39,7 +39,6 @@ class EventFilter(filters.FilterSet):
         model = Event
         fields = ['title', 'date', ]
 
-    # TODO accomplish
     def filter_date(self, queryset, name, value):
         a = self.DATE_CHOICES.get(value, all)(queryset)
         return a

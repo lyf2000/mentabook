@@ -17,7 +17,6 @@ class EventReminderHelper:
         self.add_reminder()
 
     def revoke_reminder(self):
-        # TODO простите ошибка на сервере
         reminder = EventReminderTask.objects.get(event=self)
         revoke(reminder.task_id, terminate=True)
         return reminder
@@ -40,8 +39,6 @@ class Event(models.Model, EventReminderHelper):
 
     class Meta:
         ordering = ['date']
-
-# TODO go all to create
 
     def delete(self, *args, **kwargs):
         reminder = self.revoke_reminder()
