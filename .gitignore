@@ -150,7 +150,6 @@ dump.rdb
 !**/migrations
 !**/migrations/__init__.py
 
-
 .DS_Store
 node_modules
 /dist
