@@ -10,7 +10,7 @@ import { EventItemEdit, EventItem } from '../models'
 })
 class DialogsModule extends VuexModule {
     _activeDialog: string | null = null
-    _event: EventItemEdit | null = null
+    _event = <EventItemEdit>{}
 
     @Mutation
     setActiveDialog(value: string | null) {
@@ -30,7 +30,7 @@ class DialogsModule extends VuexModule {
     // EVENT
 
     @Mutation
-    setEvent(value: EventItemEdit | null) {
+    setEvent(value: EventItemEdit) {
         this._event = value
     }
 

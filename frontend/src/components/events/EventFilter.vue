@@ -97,13 +97,13 @@ export default class EventFilter extends Vue {
         }
 
         if (pageNum) {
-            params['page'] = pageNum
+            Object.assign(params, {page: pageNum})
         }
         
         return decodeURIComponent(new URLSearchParams(params).toString())
     }
 
-    filter(pageNum) {
+    filter(pageNum: string | null = null) {
         const params = this.getSearchParamsUrl(pageNum)
         events.loadEventList(params)
     }

@@ -96,14 +96,14 @@ export default class SignUpForm extends Vue {
 
   rules = {
     email: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        (v: string) => !!v || 'E-mail is required',
+        (v: string) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
     username: [
-        v => !!v || 'E-mail is required',
+        (v: string) => !!v || 'E-mail is required',
       ],
     password: [
-        v => !!v || 'E-mail is required',
+        (v: string) => !!v || 'E-mail is required',
       ],
       
   }

@@ -134,15 +134,15 @@ export default class EventEdit extends Vue {
 
    rules = {
     title: [
-        v => !!v || 'Title is required',
+        (v: string) => !!v || 'Title is required',
       ],
     text: [
-        v => !!v || 'Text is required',
+        (v: string) => !!v || 'Text is required',
       ],
       
   }
 
-  get event(): EventItemEdit | null {
+  get event(): EventItemEdit {
     return dialogs.event
   }
 
