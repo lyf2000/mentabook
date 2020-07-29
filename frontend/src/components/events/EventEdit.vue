@@ -167,7 +167,6 @@ export default class EventEdit extends Vue {
         return
       }
     } 
-    console.log(date);
     
     const res = await updateEvent(id, {
         text, title,

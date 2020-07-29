@@ -65,7 +65,6 @@ class EventsModule extends VuexModule {
     async loadEventList(params='') {
         const data = await loadEvents(params)
         const { next, previous } = data
-        console.log(next, previous);
         
         this.changeNext(next)
         this.changePrevious(previous)

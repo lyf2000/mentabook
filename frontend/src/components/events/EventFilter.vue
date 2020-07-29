@@ -5,7 +5,6 @@
                 sm="4"
         >
             <v-text-field
-                    v-on:keypress.enter="filterEvents"
                     v-model="search"
                     label="Search"
                     :filled="true"
