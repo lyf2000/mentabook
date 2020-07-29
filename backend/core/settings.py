@@ -93,14 +93,7 @@ WSGI_APPLICATION = 'backend.core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-print('DBDBB', os.getenv('DB_NAME'))
-
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DB_NAME'),
@@ -187,7 +180,6 @@ EMAIL_HOST_PASSWORD = os.getenv('ADMIN_GOOGLE_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-print('DBDBB', os.getenv('ADMIN_GOOGLE_EMAIL'))
 
 # CORS
 if DEBUG:
