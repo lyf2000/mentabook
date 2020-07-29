@@ -23,12 +23,12 @@ class EventsModule extends VuexModule {
     }
 
     @Action({commit: 'setNext'})
-    async changeNext(next: string | null) {
-        const url = new URL(next);
-        console.log('next', next);
-        
-        next = url.searchParams.get("page") || null;
-        return next
+    changeNext(next: string | null) {
+        if (next) {
+            const url = new URL(next);
+            return url.searchParams.get("page") || null
+        }
+        return null
     }
 
     get next() {
@@ -41,10 +41,12 @@ class EventsModule extends VuexModule {
     }
 
     @Action({commit: 'setPrevious'})
-    async changePrevious(previous: string) {
-        const url = new URL(previous);
-        previous = url.searchParams.get("page") || '1';
-        return previous
+    changePrevious(previous: string | null) {
+        if (previous) {
+            const url = new URL(previous);
+            return url.searchParams.get("page") || '1'
+        }
+        return null
     }
 
     get previous() {
@@ -63,10 +65,14 @@ class EventsModule extends VuexModule {
     async loadEventList(params='') {
         const data = await loadEvents(params)
         const { next, previous } = data
-        store.dispatch('events/changeNext', next)
-        store.dispatch('events/changePrevious', previous)
+        console.log(next, previous);
+        
+        this.changeNext(next)
+        this.changePrevious(previous)
+        
         return data.results  || [] as (EventItem)[]
     }
+    
 
     @Action({commit: 'setEventList'})
     async clearEventList() {

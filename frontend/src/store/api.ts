@@ -96,8 +96,6 @@ export async function loadEvents(params: string) {
         }
     }).then(response => {
         return response.data
-    }).catch(err => {
-        return []
     })
 }
 
