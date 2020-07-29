@@ -22,6 +22,7 @@ def remind_event(id):
         'text': event.text
     }
     send_message('events/meeting_remind.html', context, mail_subject, event.author.email)
+    event.delete()
 
 
 def send_message(template_name, message_context, mail_subject, to_email):

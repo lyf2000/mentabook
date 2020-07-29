@@ -45,12 +45,6 @@ class Event(models.Model, EventReminderHelper):
         reminder.delete()
         super(Event, self).delete(*args, **kwargs)
 
-    def save(self, *args, **kwargs):
-        super(Event, self).save(*args, **kwargs)
-        self.add_reminder()
-
-
-
 
 class EventReminderTask(models.Model):
     task_id = models.CharField(max_length=128, unique=True)
