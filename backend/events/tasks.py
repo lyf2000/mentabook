@@ -29,12 +29,3 @@ def send_message(template_name, message_context, mail_subject, to_email):
     msg = EmailMultiAlternatives(mail_subject, '', '', [to_email])
     msg.attach_alternative(message, "text/html")
     return msg.send()
-
-
-# def check_to_remind_event(event):
-#     now = localtime() + timedelta(hours=1)
-#     left = event.date - timedelta(minutes=1)
-#     right = event.date + timedelta(minutes=1)
-#     if now >= left and now < right:
-#         return True
-#     return False

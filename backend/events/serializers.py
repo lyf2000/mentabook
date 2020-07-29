@@ -15,9 +15,6 @@ class EventSerializer(serializers.ModelSerializer):
 
         super(serializers.ModelSerializer, self).__init__(*args, **kwargs)
         self.partial=True
-        # a = self.context['request']
-        # self.fields.pop('date')
-        
 
     class Meta:
         model = Event

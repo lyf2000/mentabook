@@ -8,6 +8,5 @@ router.register('events', EventViewSet)
 
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
     
 ] + router.urls
