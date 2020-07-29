@@ -32,4 +32,4 @@
    npm install
    npm run serve
     ```
-1. That's it! You just need to open `http://localhost:8080/admin/` page 
+1. That's it! You just need to open `http://localhost:8080/` page 
