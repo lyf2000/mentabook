@@ -174,21 +174,7 @@ EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # CORS
-# CORS_ORIGIN_WHITELIST = [
-#     # "http://127.0.0.1:8000",
-#     "http://localhost:8080",
-# ]
-CORS_ORIGIN_ALLOW_ALL = True
-
-# CORS_ALLOW_METHODS = [
-#     'DELETE',
-#     'GET',
-#     'POST',
-#     'PUT'
-# ]
-
-# CORS_ALLOW_HEADERS = (
-        
-#         'Access-Control-Allow-Headers',
-#         'Access-Control-Allow-Credentials',
-#     )
+CORS_ORIGIN_WHITELIST = [
+    os.getenv('FRONTEND_URL'),
+]
+# CORS_ORIGIN_ALLOW_ALL = True

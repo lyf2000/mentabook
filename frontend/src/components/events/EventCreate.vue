@@ -6,15 +6,15 @@
                 dark
                 flat
               >
-                <v-toolbar-title>Edit Event on {{ event.fullDate }}</v-toolbar-title>
+                <v-toolbar-title>Create Event</v-toolbar-title>
                 <v-spacer></v-spacer>
              
               </v-toolbar>
               <v-card-text>
                 <v-form>
                   <v-text-field
-                    label="Login"
-                    name="login"
+                    label="Title"
+                    name="title"
                     type="text"
                     :rules="rules.title"
                     v-model="event.title"
@@ -22,7 +22,7 @@
 
                   <v-textarea
                     name="input-7-1"
-                    label="Default style"
+                    label="Text "
                     hint="Hint text"
                     v-model="event.text"
                     :rules="rules.text"

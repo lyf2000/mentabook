@@ -6,21 +6,6 @@
           flat
         >
           <v-toolbar-title>Login form</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-tooltip bottom>
-              <template v-slot:activator="{ on }">
-                  <v-btn
-                    href="#"
-                    icon
-                    large
-                    target="_blank"
-                    v-on="on"
-                  >
-                  <v-icon>mdi-code-tags</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-          </v-tooltip>
           </v-toolbar>
           <v-card-text>
             <v-form>
@@ -36,7 +21,7 @@
               <v-text-field
                 label="Email"
                 name="email"
-                prepend-icon="mdi-account"
+                prepend-icon="mdi-email"
                 type="email"
                 v-model="email"
                 :rules="rules.email"

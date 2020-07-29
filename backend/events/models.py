@@ -38,6 +38,9 @@ class Event(models.Model, EventReminderHelper):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['date']
+
 # TODO go all to create
 
     def delete(self, *args, **kwargs):
