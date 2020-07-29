@@ -26,6 +26,7 @@
    python manage.py createsuperuser # enter fields + also your real email
    redis-server
    celery -A backend.core worker -l info --pool=solo
+   python manage.py runserver
 
    # at the ./frontend
    npm install
