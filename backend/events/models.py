@@ -18,7 +18,7 @@ class EventReminderHelper:
 
     def revoke_reminder(self):
         reminder = EventReminderTask.objects.get(event=self)
-        revoke(reminder.task_id, terminate=True)
+        revoke(reminder.task_id)
         return reminder
 
     def check_date_changed(self, old_date):

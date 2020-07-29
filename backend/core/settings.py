@@ -29,7 +29,10 @@ SECRET_KEY = 'g&rc56tubu-07ty4j*#z!-b4bqv$+wd=%-zqp@0alq^tbj#+%0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = ['*']
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -90,11 +93,22 @@ WSGI_APPLICATION = 'backend.core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+print('DBDBB', os.getenv('DB_NAME'))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': os.getenv('DB_NAME'),
+    #     'USER': os.getenv('DB_USER'),
+    #     'PASSWORD': os.getenv('DB_PASSWORD'),
+    #     'HOST': 'db',
+    #     'PORT': 5432,
+    # }
 }
 
 
@@ -173,8 +187,11 @@ EMAIL_HOST_PASSWORD = os.getenv('ADMIN_GOOGLE_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+print('DBDBB', os.getenv('ADMIN_GOOGLE_EMAIL'))
+
 # CORS
-CORS_ORIGIN_WHITELIST = [
-    os.getenv('FRONTEND_URL'),
-]
+if DEBUG:
+    CORS_ORIGIN_WHITELIST = [
+        os.getenv('FRONTEND_URL'),
+    ]
 # CORS_ORIGIN_ALLOW_ALL = True

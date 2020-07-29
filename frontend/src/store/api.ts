@@ -7,7 +7,7 @@ import dialogs from './modules/dialogs'
 
 export const axs = axios.create({
     baseURL:  'http://localhost:8000',
-    // baseURL: process.env.API_URL + '/',
+    // baseURL: window.location.origin,
 	headers: {
 		'Content-Type': 'application/json',
         'Accept': 'application/json',
