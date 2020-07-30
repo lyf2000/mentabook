@@ -9,9 +9,12 @@ from .models import Event
 
 @shared_task
 def remind_event(id):
+    print('ID', id)
     try:
+        print(Event.objects.all())
         event = Event.objects.get(id=id)
     except Event.DoesNotExist:
+        print('exc')
         return False
 
     mail_subject = 'MEETIIIING AAAAA.'
