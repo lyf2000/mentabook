@@ -28,17 +28,3 @@ class EventViewSet(viewsets.ModelViewSet):
         event = serializer.save()
         if event.check_date_changed(old_date):
             event.date_changed()
-
-@api_view(['GET'])
-def m(request):
-    print(1)
-    mail_subject = 'MEETIIIING AAAAA.'
-    context = {
-        'username': 'event.author.username',
-        'date': "event.date.strftime('%Y-%m-%d %H:%M')",
-        'title': 'event.title',
-        'text': 'event.text'
-    }
-    res = send_message('events/meeting_remind.html', context, mail_subject, 'lyf2000@mail.ru')
-    print('res', res)
-    return Response({'a': 'a'})
