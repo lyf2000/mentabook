@@ -21,15 +21,11 @@ ENV CELERY_RESULT_BACKEND redis://redis:6379
 ENV ADMIN_GOOGLE_EMAIL nda030600@gmail.com
 ENV ADMIN_GOOGLE_PASSWORD LFVBH0110
 ENV VUE_APP_BACKEND_HOST http://localhost:1234
-ENV FRONTEND_URL http://localhost:1234
-ENV DB_NAME postgres
-ENV DB_USER postgres
-ENV DB_PASSWORD postgres
+ENV FRONTEND_URL http://localhost:8000
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN pip install pipenv
 RUN pipenv install --system 
-# RUN python manage.py migrate
 
 CMD python manage.py runserver  0.0.0.0:8000
