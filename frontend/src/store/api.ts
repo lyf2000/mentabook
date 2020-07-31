@@ -1,12 +1,14 @@
 import axios from 'axios'
-import { UserSubmit, User, EventItem, UserSignUp } from './models'
+import { UserSubmit, EventItem, UserSignUp } from './models'
 import users from './modules/users'
-import router from '@/router'
-import events from './modules/events'
-import dialogs from './modules/dialogs'
+
+
+console.log(process.env.VUE_APP_BACKEND_HOST || window.location.host, 'hhh');
+
+
 
 export const axs = axios.create({
-    baseURL:  'http://localhost:8000',
+    baseURL:  process.env.VUE_APP_BACKEND_HOST || window.location.host,
     // baseURL: window.location.origin,
 	headers: {
 		'Content-Type': 'application/json',

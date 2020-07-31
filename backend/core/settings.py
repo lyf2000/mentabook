@@ -90,18 +90,35 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.core.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+def get_db():
+    if DEBUG:
+        return {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST' : 'localhost',
+            'PORT': 5432,
+        }
+    else:
+        return {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'HOST': 'db',
+            'PORT': 5432
+        }
+
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST' : 'localhost',
-        'PORT': 5432,
-    }
+
+    'default': get_db()
+
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': 'mydatabase',
+    # }
 }
 
 
@@ -182,8 +199,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 # CORS
-if DEBUG:
-    CORS_ORIGIN_WHITELIST = [
-        os.getenv('FRONTEND_URL'),
-    ]
+
+CORS_ORIGIN_WHITELIST = [
+    os.getenv('FRONTEND_URL'),
+]
+print('CORS', CORS_ORIGIN_WHITELIST)
 # CORS_ORIGIN_ALLOW_ALL = True
