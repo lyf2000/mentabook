@@ -37,5 +37,5 @@
 
 ### Installation (DOCKER)
 
-1. Run in root `ocker-compose up --build`
+1. Run in root `docker-compose up --build`
 1. Open [Link](http://localhost:1234/)
