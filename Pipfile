@@ -7,7 +7,7 @@ verify_ssl = true
 ipython = "7.16.1"
 
 [packages]
-djangorestframework = "3.11.0"
+djangorestframework = "3.11.2"
 django-filter = "2.3.0"
 djangorestframework-simplejwt = "4.4.0"
 python-dotenv = "0.14.0"
